@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:padding="0dp"
+        app:shapeAppearanceOverlay="@style/CardTopRounded"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="407dp"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/analyze"
+                    android:background="@drawable/menu_shape"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="24dp"
+                    android:layout_width="112dp"
+                    android:layout_height="59dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="24dp"
+                    android:paddingBottom="8dp">
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
+                        android:src="@drawable/scan" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Analizar"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/todo"
+                    android:layout_width="81dp"
+                    android:background="@drawable/menu_shape"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/history" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Historial"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/history"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="81dp"
+                    android:layout_height="59dp"
+                    android:background="@drawable/menu_shape"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/history" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Historial"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/config"
+                    android:layout_width="81dp"
+                    android:layout_height="59dp"
+
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/menu_shape"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/settings" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ayuda"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
