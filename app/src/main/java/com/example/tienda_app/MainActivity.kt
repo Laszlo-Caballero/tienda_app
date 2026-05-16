@@ -27,13 +27,20 @@ class MainActivity : AppCompatActivity() {
 
         val btnhistory = findViewById<LinearLayout>(R.id.history)
         val btnSettings = findViewById<LinearLayout>(R.id.config)
+        val btnGallery = findViewById<LinearLayout>(R.id.gallery)
 
-        val items = listOf(btnAnalyzer, btnhistory, btnSettings)
+        val items = listOf(btnAnalyzer, btnGallery, btnhistory, btnSettings)
 
         btnAnalyzer.setOnClickListener {
             val analyzerFragment = ScanFragment()
             selectItem(btnAnalyzer, items)
             cargarFragment(analyzerFragment)
+        }
+
+        btnGallery.setOnClickListener {
+            // TODO: Create a GalleryFragment if needed, or simply handle action
+            selectItem(btnGallery, items)
+            // cargarFragment(galleryFragment)
         }
 
         btnhistory.setOnClickListener {
