@@ -9,13 +9,18 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.tienda_app.model.ProductAnalysis
+import com.example.tienda_app.util.SettingsManager
+import com.example.tienda_app.util.AccessibilityHelper
+import com.example.tienda_app.ui.map.StoreMapFragment
 
 class ProductDetailFragment : Fragment() {
 
     private var product: ProductAnalysis? = null
+    private lateinit var settingsManager: SettingsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        settingsManager = SettingsManager.getInstance(requireContext())
         arguments?.let {
             product = it.getSerializable("product") as? ProductAnalysis
         }
@@ -32,20 +37,28 @@ class ProductDetailFragment : Fragment() {
         }
 
         product?.let { p ->
-            view.findViewById<TextView>(R.id.tvDetailName).text = p.nombre
-            view.findViewById<TextView>(R.id.tvDetailBrand).text = p.marca
-            view.findViewById<TextView>(R.id.tvDetailSeller).text = p.vendido_por
-            view.findViewById<TextView>(R.id.tvDetailCategory).text = "${p.categoria} > ${p.sub_categoria}"
+            val tvDetailName = view.findViewById<TextView>(R.id.tvDetailName)
+            val tvDetailBrand = view.findViewById<TextView>(R.id.tvDetailBrand)
+            val tvDetailSeller = view.findViewById<TextView>(R.id.tvDetailSeller)
+            val tvDetailCategory = view.findViewById<TextView>(R.id.tvDetailCategory)
+            val tvDetailPrice = view.findViewById<TextView>(R.id.tvDetailPrice)
+            val tvDetailFeatures = view.findViewById<TextView>(R.id.tvDetailFeatures)
+            val tvDetailSpecs = view.findViewById<TextView>(R.id.tvDetailSpecs)
+
+            tvDetailName.text = p.nombre
+            tvDetailBrand.text = p.marca
+            tvDetailSeller.text = p.vendido_por
+            tvDetailCategory.text = "${p.categoria} > ${p.sub_categoria}"
             
             val pricesText = if (p.precios.isNotEmpty()) {
                 p.precios.joinToString(" - ") { "S/ $it" }
             } else {
                 "Precio no disponible"
             }
-            view.findViewById<TextView>(R.id.tvDetailPrice).text = pricesText
+            tvDetailPrice.text = pricesText
             
-            view.findViewById<TextView>(R.id.tvDetailFeatures).text = p.caracteristicas.joinToString("\n") { "• $it" }
-            view.findViewById<TextView>(R.id.tvDetailSpecs).text = p.especificaciones.joinToString("\n") { "• $it" }
+            tvDetailFeatures.text = p.caracteristicas.joinToString("\n") { "• $it" }
+            tvDetailSpecs.text = p.especificaciones.joinToString("\n") { "• $it" }
 
             val ivDetailImage = view.findViewById<ImageView>(R.id.ivDetailImage)
             if (p.imagenes.isNotEmpty()) {
@@ -55,6 +68,33 @@ class ProductDetailFragment : Fragment() {
                     .load(imageUrl)
                     .into(ivDetailImage)
             }
+
+            // High contrast adjustments
+            if (settingsManager.highContrastMode) {
+                tvDetailName.setTextColor(requireContext().getColor(android.R.color.black))
+                tvDetailName.paint.isFakeBoldText = true
+                tvDetailSeller.setTextColor(requireContext().getColor(android.R.color.black))
+                tvDetailSeller.paint.isFakeBoldText = true
+                tvDetailCategory.setTextColor(requireContext().getColor(android.R.color.black))
+                tvDetailCategory.paint.isFakeBoldText = true
+                tvDetailPrice.setTextColor(requireContext().getColor(android.R.color.black))
+                tvDetailPrice.paint.isFakeBoldText = true
+                tvDetailFeatures.setTextColor(requireContext().getColor(android.R.color.black))
+                tvDetailSpecs.setTextColor(requireContext().getColor(android.R.color.black))
+            }
+
+            // Setup map button click
+            view.findViewById<View>(R.id.btnViewStores).setOnClickListener {
+                val mapFragment = StoreMapFragment.newInstance(p.vendido_por)
+                val containerId = (requireView().parent as ViewGroup).id
+                parentFragmentManager.beginTransaction()
+                    .replace(containerId, mapFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+            // Accessibility announcement on details loaded
+            AccessibilityHelper.announce(view, "Detalle del producto cargado: ${p.nombre}. Vendido por ${p.vendido_por}. Precio: $pricesText")
         }
 
         return view

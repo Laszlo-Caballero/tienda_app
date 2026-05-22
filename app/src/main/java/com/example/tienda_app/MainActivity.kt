@@ -1,5 +1,6 @@
 package com.example.tienda_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -8,10 +9,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.tienda_app.api.ApiController
+import com.example.tienda_app.ui.auth.AuthActivity
+import com.example.tienda_app.util.AuthManager
+import com.example.tienda_app.util.PushNotificationManager
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize API controller
+        ApiController.init(applicationContext)
+
+        // Session check guard
+        if (!AuthManager.getInstance(this).isLoggedIn()) {
+            val intent = Intent(this, AuthActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            }
+            startActivity(intent)
+            finish()
+            return
+        }
+
+        // Initialize Push Notifications
+        PushNotificationManager.initNotificationChannel(applicationContext)
+        PushNotificationManager.registerCurrentToken(applicationContext)
+        PushNotificationManager.requestNotificationPermission(this, 1001)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -38,9 +62,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnGallery.setOnClickListener {
-            // TODO: Create a GalleryFragment if needed, or simply handle action
+            val searchFragment = com.example.tienda_app.ui.search.SearchFragment()
             selectItem(btnGallery, items)
-            // cargarFragment(galleryFragment)
+            cargarFragment(searchFragment)
         }
 
         btnhistory.setOnClickListener {
