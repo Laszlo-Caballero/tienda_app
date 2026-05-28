@@ -16,6 +16,7 @@ import com.example.tienda_app.MainActivity
 import com.example.tienda_app.R
 import com.example.tienda_app.api.ApiController
 import com.example.tienda_app.model.LoginRequest
+import com.example.tienda_app.model.User
 import com.example.tienda_app.util.AccessibilityHelper
 import com.example.tienda_app.util.AuthManager
 import com.example.tienda_app.util.PushNotificationManager
@@ -28,6 +29,7 @@ class LoginFragment : Fragment() {
     private lateinit var etUsername: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
+    private lateinit var btnTestLogin: Button
     private lateinit var layoutRegisterLink: LinearLayout
     private lateinit var tvErrorMsg: TextView
     private lateinit var layoutLoading: FrameLayout
@@ -48,6 +50,7 @@ class LoginFragment : Fragment() {
         etUsername = view.findViewById(R.id.etUsername)
         etPassword = view.findViewById(R.id.etPassword)
         btnLogin = view.findViewById(R.id.btnLogin)
+        btnTestLogin = view.findViewById(R.id.btnTestLogin)
         layoutRegisterLink = view.findViewById(R.id.layoutRegisterLink)
         tvErrorMsg = view.findViewById(R.id.tvErrorMsg)
         layoutLoading = view.findViewById(R.id.layoutLoading)
@@ -56,6 +59,10 @@ class LoginFragment : Fragment() {
 
         btnLogin.setOnClickListener {
             attemptLogin()
+        }
+
+        btnTestLogin.setOnClickListener {
+            loginAsTestUser()
         }
 
         layoutRegisterLink.setOnClickListener {
@@ -123,6 +130,33 @@ class LoginFragment : Fragment() {
                 showLoading(false)
             }
         }
+    }
+
+    private fun loginAsTestUser() {
+        val mockUser = User(
+            userId = 999,
+            username = "usuario_prueba",
+            email = "prueba@tienda.com",
+            role = "ADMIN"
+        )
+        AuthManager.getInstance(requireContext()).saveSession(
+            "mock_access_token_12345",
+            mockUser
+        )
+
+        try {
+            PushNotificationManager.registerCurrentToken(requireContext())
+        } catch (e: Exception) {
+            // Ignorar errores de registro de token en desarrollo
+        }
+
+        AccessibilityHelper.announce(btnTestLogin, "Inicio de sesión de prueba exitoso. Bienvenido.")
+
+        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun showError(message: String) {

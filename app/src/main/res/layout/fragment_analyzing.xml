@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Visionary\nAssistant"
+            android:text="Asistente\nVisionario"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Optimizing vision clarity and\nidentifying architectural patterns."
+                android:text="Optimizando la claridad visual e\nidentificando patrones arquitectónicos."
                 android:textColor="#4A5568"
                 android:textSize="16sp"
                 android:gravity="center"
@@ -122,14 +122,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="CURRENT PHASE"
+                                    android:text="FASE ACTUAL"
                                     android:textSize="10sp"
                                     android:textStyle="bold"
                                     android:textColor="#64748B"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Structural\nRecognition"
+                                    android:text="Reconocimiento\nEstructural"
                                     android:textSize="14sp"
                                     android:textStyle="bold"
                                     android:textColor="#0B1C33"/>
@@ -157,14 +157,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="NEURAL PROCESSING"
+                    android:text="PROCESAMIENTO NEURAL"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="#6E5C00"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Task 2 of 3"
+                    android:text="Tarea 2 de 3"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#0B1C33"/>
@@ -190,7 +190,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="✓ IMAGE DECODED"
+                    android:text="✓ IMAGEN DECODIFICADA"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -202,7 +202,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⊝ OBJECT ISOLATION"
+                    android:text="⊝ AISLAMIENTO DE OBJETOS"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="#4A5568"
@@ -214,7 +214,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="○ SEMANTIC LABELING"
+                    android:text="○ ETIQUETADO SEMÁNTICO"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="#A0AEC0"

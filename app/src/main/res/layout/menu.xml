@@ -33,7 +33,7 @@
             android:id="@+id/text_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Analyze"
+            android:text="Analizar"
             android:textColor="@color/menu_color_selector"
             android:textSize="12sp" />
     </LinearLayout>
@@ -95,7 +95,7 @@
             android:id="@+id/text_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="History"
+            android:text="Historial"
             android:textColor="@color/menu_color_selector"
             android:textSize="12sp" />
     </LinearLayout>
@@ -125,7 +125,7 @@
             android:id="@+id/text_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="Configuración"
             android:textColor="@color/menu_color_selector"
             android:textSize="12sp" />
     </LinearLayout>

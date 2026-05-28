@@ -204,7 +204,7 @@
                     android:id="@+id/tvDetailSpecs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="- Spec 1\n- Spec 2"
+                    android:text="- Especificación 1\n- Especificación 2"
                     android:textSize="14sp"
                     android:textColor="#4A5568"
                     android:lineSpacingExtra="4dp"/>
