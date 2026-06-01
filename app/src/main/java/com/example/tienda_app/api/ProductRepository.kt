@@ -1,7 +1,7 @@
-package com.example.tienda_app.api
+package com.laszlo.tienda_app.api
 
-import com.example.tienda_app.model.Imagen
-import com.example.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.model.Imagen
+import com.laszlo.tienda_app.model.ProductAnalysis
 
 object ProductRepository {
 

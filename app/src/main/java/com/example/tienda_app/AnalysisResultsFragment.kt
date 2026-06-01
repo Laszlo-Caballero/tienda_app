@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.model.ProductAnalysis
 
 class AnalysisResultsFragment : Fragment() {
 

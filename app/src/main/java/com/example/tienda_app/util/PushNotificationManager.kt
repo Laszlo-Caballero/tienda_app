@@ -1,4 +1,4 @@
-package com.example.tienda_app.util
+package com.laszlo.tienda_app.util
 
 import android.Manifest
 import android.app.Activity
@@ -10,8 +10,8 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.tienda_app.api.ApiController
-import com.example.tienda_app.model.PushTokenRequest
+import com.laszlo.tienda_app.api.ApiController
+import com.laszlo.tienda_app.model.PushTokenRequest
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

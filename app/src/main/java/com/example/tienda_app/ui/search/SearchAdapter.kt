@@ -1,4 +1,4 @@
-package com.example.tienda_app.ui.search
+package com.laszlo.tienda_app.ui.search
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tienda_app.Constants
-import com.example.tienda_app.R
-import com.example.tienda_app.model.ProductAnalysis
-import com.example.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.Constants
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.util.SettingsManager
 
 class SearchAdapter(
     private var products: List<ProductAnalysis>,

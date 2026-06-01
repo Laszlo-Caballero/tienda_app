@@ -1,8 +1,8 @@
-package com.example.tienda_app.util
+package com.laszlo.tienda_app.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.tienda_app.model.User
+import com.laszlo.tienda_app.model.User
 import com.google.gson.Gson
 
 class AuthManager private constructor(context: Context) {

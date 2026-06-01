@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tienda_app.api.ApiController
-import com.example.tienda_app.components.HistoryAdapter
+import com.laszlo.tienda_app.api.ApiController
+import com.laszlo.tienda_app.components.HistoryAdapter
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match

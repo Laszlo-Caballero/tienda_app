@@ -1,15 +1,19 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.laszlo.tienda_app.api.ProductRepository
+import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.util.QrScannerHelper
+import com.google.gson.Gson
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -56,7 +60,7 @@ class ScanFragment : Fragment() {
     }
 
     private fun scanQrCode() {
-        val helper = com.example.tienda_app.util.QrScannerHelper(requireContext())
+        val helper = QrScannerHelper(requireContext())
         helper.startScan(
             onSuccess = { qrContent ->
                 handleQrContent(qrContent)
@@ -75,7 +79,7 @@ class ScanFragment : Fragment() {
         try {
             // Option 1: QR contains full Product JSON
             if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
-                val product = com.google.gson.Gson().fromJson(trimmed, com.example.tienda_app.model.ProductAnalysis::class.java)
+                val product = Gson().fromJson(trimmed, ProductAnalysis::class.java)
                 if (product != null && !product.nombre.isNullOrEmpty()) {
                     navigateToProductDetails(product)
                     return
@@ -86,21 +90,21 @@ class ScanFragment : Fragment() {
         }
 
         // Option 2: QR contains a Product ID or Name - Search in repository
-        val matchedProduct = com.example.tienda_app.api.ProductRepository.searchLocal(trimmed).firstOrNull()
+        val matchedProduct = ProductRepository.searchLocal(trimmed).firstOrNull()
         if (matchedProduct != null) {
             navigateToProductDetails(matchedProduct)
             view?.let {
-                com.example.tienda_app.util.AccessibilityHelper.announce(it, "Código QR de ${matchedProduct.nombre} identificado.")
+                AccessibilityHelper.announce(it, "Código QR de ${matchedProduct.nombre} identificado.")
             }
         } else {
             Toast.makeText(requireContext(), "Contenido QR: $trimmed (No se encontró producto correspondiente)", Toast.LENGTH_LONG).show()
             view?.let {
-                com.example.tienda_app.util.AccessibilityHelper.announce(it, "QR escaneado: $trimmed. Producto no encontrado.")
+                AccessibilityHelper.announce(it, "QR escaneado: $trimmed. Producto no encontrado.")
             }
         }
     }
 
-    private fun navigateToProductDetails(product: com.example.tienda_app.model.ProductAnalysis) {
+    private fun navigateToProductDetails(product: ProductAnalysis) {
         val fragment = ProductDetailFragment.newInstance(product)
         val containerId = (requireView().parent as ViewGroup).id
         parentFragmentManager.beginTransaction()

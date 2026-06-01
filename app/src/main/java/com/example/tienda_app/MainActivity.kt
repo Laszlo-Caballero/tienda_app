@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.tienda_app.api.ApiController
-import com.example.tienda_app.ui.auth.AuthActivity
-import com.example.tienda_app.util.AuthManager
-import com.example.tienda_app.util.PushNotificationManager
+import com.laszlo.tienda_app.api.ApiController
+import com.laszlo.tienda_app.ui.auth.AuthActivity
+import com.laszlo.tienda_app.ui.search.SearchFragment
+import com.laszlo.tienda_app.util.AuthManager
+import com.laszlo.tienda_app.util.PushNotificationManager
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnGallery.setOnClickListener {
-            val searchFragment = com.example.tienda_app.ui.search.SearchFragment()
+            val searchFragment = SearchFragment()
             selectItem(btnGallery, items)
             cargarFragment(searchFragment)
         }

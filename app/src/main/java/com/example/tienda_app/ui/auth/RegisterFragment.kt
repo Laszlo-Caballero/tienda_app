@@ -1,4 +1,4 @@
-package com.example.tienda_app.ui.auth
+package com.laszlo.tienda_app.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,14 +13,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.tienda_app.MainActivity
-import com.example.tienda_app.R
-import com.example.tienda_app.api.ApiController
-import com.example.tienda_app.model.RegisterRequest
-import com.example.tienda_app.util.AccessibilityHelper
-import com.example.tienda_app.util.AuthManager
-import com.example.tienda_app.util.PushNotificationManager
-import com.example.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.MainActivity
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.api.ApiController
+import com.laszlo.tienda_app.model.RegisterRequest
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.util.AuthManager
+import com.laszlo.tienda_app.util.PushNotificationManager
+import com.laszlo.tienda_app.util.SettingsManager
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

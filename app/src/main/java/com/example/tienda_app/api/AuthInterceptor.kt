@@ -1,10 +1,10 @@
-package com.example.tienda_app.api
+package com.laszlo.tienda_app.api
 
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.tienda_app.ui.auth.AuthActivity
-import com.example.tienda_app.util.AuthManager
+import com.laszlo.tienda_app.ui.auth.AuthActivity
+import com.laszlo.tienda_app.util.AuthManager
 import okhttp3.Interceptor
 import okhttp3.Response
 

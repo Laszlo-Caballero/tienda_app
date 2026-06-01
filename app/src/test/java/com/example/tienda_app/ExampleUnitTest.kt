@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import org.junit.Test
 

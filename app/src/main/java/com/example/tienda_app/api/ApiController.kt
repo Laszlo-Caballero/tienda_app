@@ -1,7 +1,7 @@
-package com.example.tienda_app.api
+package com.laszlo.tienda_app.api
 
 import android.content.Context
-import com.example.tienda_app.Constants
+import com.laszlo.tienda_app.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,4 +30,4 @@ object ApiController {
         get() {
             return apiServiceInstance ?: throw IllegalStateException("ApiController must be initialized by calling init(context) first.")
         }
-}
+}

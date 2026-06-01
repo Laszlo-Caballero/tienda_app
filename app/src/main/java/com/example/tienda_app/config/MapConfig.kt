@@ -1,4 +1,4 @@
-package com.example.tienda_app.config
+package com.laszlo.tienda_app.config
 
 import com.google.android.gms.maps.model.LatLng
 

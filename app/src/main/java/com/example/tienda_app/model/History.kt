@@ -1,4 +1,4 @@
-package com.example.tienda_app.model
+package com.laszlo.tienda_app.model
 
 data class History(
     val id: Int,

@@ -1,4 +1,4 @@
-package com.example.tienda_app.services
+package com.laszlo.tienda_app.services
 
 import android.Manifest
 import android.app.PendingIntent
@@ -8,9 +8,9 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.example.tienda_app.MainActivity
-import com.example.tienda_app.R
-import com.example.tienda_app.util.PushNotificationManager
+import com.laszlo.tienda_app.MainActivity
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.util.PushNotificationManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

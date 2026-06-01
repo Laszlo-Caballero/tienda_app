@@ -1,4 +1,4 @@
-package com.example.tienda_app.ui.map
+package com.laszlo.tienda_app.ui.map
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.tienda_app.R
-import com.example.tienda_app.config.MapConfig
-import com.example.tienda_app.util.AccessibilityHelper
-import com.example.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.config.MapConfig
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.util.SettingsManager
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

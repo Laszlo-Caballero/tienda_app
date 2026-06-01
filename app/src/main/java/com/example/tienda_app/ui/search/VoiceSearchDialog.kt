@@ -1,4 +1,4 @@
-package com.example.tienda_app.ui.search
+package com.laszlo.tienda_app.ui.search
 
 import android.Manifest
 import android.content.Intent
@@ -14,14 +14,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import com.example.tienda_app.AnalysisResultsFragment
-import com.example.tienda_app.R
-import com.example.tienda_app.api.ProductRepository
-import com.example.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.AnalysisResultsFragment
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.api.ProductRepository
+import com.laszlo.tienda_app.util.AccessibilityHelper
 import kotlinx.coroutines.launch
 import java.util.Locale
 

@@ -1,4 +1,4 @@
-package com.example.tienda_app.components
+package com.laszlo.tienda_app.components
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.tienda_app.R
-import com.example.tienda_app.model.History
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.model.History
 
 class HistoryAdapter(
     private var history: List<History>,

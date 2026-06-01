@@ -15,11 +15,12 @@ if (localPropertiesFile.exists()) {
 val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") ?: ""
 
 android {
-    namespace = "com.example.tienda_app"
+    namespace = "com.laszlo.tienda_app"
     compileSdk = 36 // Let's simplify compileSdk to a standard integer for compatibility
 
     defaultConfig {
-        applicationId = "com.example.tienda_app"
+        manifestPlaceholders += mapOf()
+        applicationId = "com.laszlo.tienda_app"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

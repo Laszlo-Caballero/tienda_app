@@ -1,4 +1,4 @@
-package com.example.tienda_app.ui.search
+package com.laszlo.tienda_app.ui.search
 
 import android.Manifest
 import android.content.Context
@@ -24,10 +24,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tienda_app.ProductDetailFragment
-import com.example.tienda_app.R
-import com.example.tienda_app.util.AccessibilityHelper
-import com.example.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.ProductDetailFragment
+import com.laszlo.tienda_app.R
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.util.SettingsManager
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

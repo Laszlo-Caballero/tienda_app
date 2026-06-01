@@ -1,12 +1,12 @@
-package com.example.tienda_app.api
+package com.laszlo.tienda_app.api
 
-import com.example.tienda_app.model.History
-import com.example.tienda_app.model.ProductAnalysis
-import com.example.tienda_app.model.Root
-import com.example.tienda_app.model.LoginRequest
-import com.example.tienda_app.model.RegisterRequest
-import com.example.tienda_app.model.AuthResponse
-import com.example.tienda_app.model.PushTokenRequest
+import com.laszlo.tienda_app.model.History
+import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.model.Root
+import com.laszlo.tienda_app.model.LoginRequest
+import com.laszlo.tienda_app.model.RegisterRequest
+import com.laszlo.tienda_app.model.AuthResponse
+import com.laszlo.tienda_app.model.PushTokenRequest
 import okhttp3.MultipartBody
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -44,4 +44,4 @@ interface ApiService {
     suspend fun registerPushToken(
         @Body body: PushTokenRequest
     ): Root<Unit>
-}
+}

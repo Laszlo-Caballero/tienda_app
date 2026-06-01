@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.tienda_app.model.ProductAnalysis
-import com.example.tienda_app.util.SettingsManager
-import com.example.tienda_app.util.AccessibilityHelper
-import com.example.tienda_app.ui.map.StoreMapFragment
+import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.ui.map.StoreMapFragment
 
 class ProductDetailFragment : Fragment() {
 

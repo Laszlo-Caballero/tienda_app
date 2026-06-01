@@ -1,4 +1,4 @@
-package com.example.tienda_app
+package com.laszlo.tienda_app
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
-import com.example.tienda_app.ui.auth.AuthActivity
-import com.example.tienda_app.util.AccessibilityHelper
-import com.example.tienda_app.util.AuthManager
-import com.example.tienda_app.util.SettingsManager
+import com.laszlo.tienda_app.ui.auth.AuthActivity
+import com.laszlo.tienda_app.util.AccessibilityHelper
+import com.laszlo.tienda_app.util.AuthManager
+import com.laszlo.tienda_app.util.SettingsManager
 
 class ConfigFragment : Fragment() {
 

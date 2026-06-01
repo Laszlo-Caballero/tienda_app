@@ -1,4 +1,4 @@
-package com.example.tienda_app.util
+package com.laszlo.tienda_app.util
 
 import android.content.Context
 import android.view.View

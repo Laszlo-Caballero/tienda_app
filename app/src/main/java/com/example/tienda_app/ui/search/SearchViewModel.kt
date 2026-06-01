@@ -1,11 +1,11 @@
-package com.example.tienda_app.ui.search
+package com.laszlo.tienda_app.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tienda_app.api.ProductRepository
-import com.example.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.api.ProductRepository
+import com.laszlo.tienda_app.model.ProductAnalysis
 import kotlinx.coroutines.launch
 
 sealed class SearchUiState {
