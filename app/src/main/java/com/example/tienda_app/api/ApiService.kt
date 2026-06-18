@@ -19,6 +19,11 @@ interface ApiService {
     @GET("history")
     suspend fun getHistory(): List<History>
 
+    @GET("api/products")
+    suspend fun getProducts(
+        @Query("query") query: String?
+    ): Root<ProductAnalysis>
+
     @Multipart
     @POST("api/products/identify")
     suspend fun identifyProduct(

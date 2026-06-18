@@ -37,8 +37,10 @@ class HistoryAdapter(
         holder.description.text = historySingle.description
         holder.category.text = historySingle.category
 
+        val imagePath = historySingle.image.replace("\\", "/")
+        val imageUrl = if (imagePath.startsWith("http")) imagePath else "${com.laszlo.tienda_app.Constants.API_BASE_URL}$imagePath"
         Glide.with(holder.image.context)
-            .load(historySingle.image)
+            .load(imageUrl)
             .into(holder.image)
     }
 
