@@ -129,9 +129,6 @@ object ProductRepository {
         )
     )
 
-    /**
-     * Search locally across the fallback dataset. Used when API fails or offline.
-     */
     fun searchLocal(query: String): List<ProductAnalysis> {
         if (query.isBlank()) return LOCAL_PRODUCTS
         return LOCAL_PRODUCTS.filter { product ->
@@ -144,10 +141,6 @@ object ProductRepository {
         }
     }
 
-    /**
-     * Attempts to load products from API history and maps them to ProductAnalysis.
-     * Falls back to local search if an exception is thrown.
-     */
     suspend fun getProducts(query: String): List<ProductAnalysis> {
         return try {
             val historyItems = ApiController.api.getHistory()
@@ -176,15 +169,10 @@ object ProductRepository {
                 }.ifEmpty { searchLocal(query) }
             }
         } catch (e: Exception) {
-            // Server down / network failure: fallback to local dataset
             searchLocal(query)
         }
     }
 
-    /**
-     * Executes a voice search. Calls the api/products/voice endpoint and falls back
-     * to local search matches if the network request fails.
-     */
     suspend fun voiceSearch(query: String): List<ProductAnalysis> {
         return try {
             val response = ApiController.api.voiceSearch(query)
