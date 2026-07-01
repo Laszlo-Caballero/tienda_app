@@ -34,14 +34,20 @@ class HistoryAdapter(
 
         holder.title.text = historySingle.title
         holder.time.text = historySingle.time
-        holder.description.text = historySingle.description
-        holder.category.text = historySingle.category
+        holder.description.text = historySingle.description ?: ""
+        holder.category.text = historySingle.category ?: ""
 
-        val imagePath = historySingle.image.replace("\\", "/")
-        val imageUrl = if (imagePath.startsWith("http")) imagePath else "${com.laszlo.tienda_app.Constants.API_BASE_URL}$imagePath"
-        Glide.with(holder.image.context)
-            .load(imageUrl)
-            .into(holder.image)
+        val imagePath = historySingle.image?.replace("\\", "/")
+        if (!imagePath.isNullOrEmpty()) {
+            val imageUrl = if (imagePath.startsWith("http")) imagePath else "${com.laszlo.tienda_app.Constants.API_BASE_URL}$imagePath"
+            Glide.with(holder.image.context)
+                .load(imageUrl)
+                .placeholder(R.drawable.history)
+                .error(R.drawable.history)
+                .into(holder.image)
+        } else {
+            holder.image.setImageResource(R.drawable.history)
+        }
     }
 
     override fun getItemCount(): Int = history.size

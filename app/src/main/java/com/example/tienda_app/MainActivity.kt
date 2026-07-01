@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnhistory.setOnClickListener {
-            val historyFragment = HistoryFrangment()
+            val historyFragment = HistoryFragment()
             selectItem(btnhistory, items)
             cargarFragment(historyFragment)
         }
