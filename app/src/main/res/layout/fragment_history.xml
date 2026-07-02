@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#121212"
+    android:background="#F8F9FA"
     android:paddingTop="24dp">
 
     <!-- Screen Title -->
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Historial de Búsquedas"
-        android:textColor="#FFFFFF"
+        android:textColor="#0B1C33"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginLeft="20dp"
@@ -45,13 +45,13 @@
                 android:layout_height="80dp"
                 android:src="@drawable/history"
                 android:contentDescription="Historial vacío"
-                android:tint="#4DFFFFFF" />
+                android:tint="#CBD5E1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Historial vacío"
-                android:textColor="#FFFFFF"
+                android:textColor="#0B1C33"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp" />
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tus búsquedas por texto, voz e imágenes se guardarán aquí automáticamente."
-                android:textColor="#8E8E93"
+                android:textColor="#64748B"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:layout_marginTop="8dp" />

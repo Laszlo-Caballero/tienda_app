@@ -89,7 +89,8 @@ class ChatFragment : Fragment() {
         rvChatHistory.layoutManager = LinearLayoutManager(requireContext())
         rvChatHistory.adapter = adapter
 
-        // Welcome message if chat is empty
+        // Load saved chat history
+        loadChatHistory()
         if (displayMessages.isEmpty()) {
             addAssistantMessage("¡Hola! Soy tu Asistente DeepSeek. ¿Qué productos estás buscando hoy? Puedes decirme cosas como \"Hola, busco zapatillas nike rojas\" o usar tu voz.")
         }
@@ -104,6 +105,8 @@ class ChatFragment : Fragment() {
             displayMessages.clear()
             apiMessages.clear()
             adapter.notifyDataSetChanged()
+            val sharedPrefs = requireContext().getSharedPreferences("chat_prefs", Context.MODE_PRIVATE)
+            sharedPrefs.edit().remove("chat_history").apply()
             addAssistantMessage("Historial limpio. ¿En qué te puedo ayudar ahora?")
             AccessibilityHelper.announce(view, "Historial de conversación borrado.")
         }
@@ -208,6 +211,7 @@ class ChatFragment : Fragment() {
         apiMessages.add(ChatMessage(role = "user", content = content))
         adapter.notifyItemInserted(displayMessages.size - 1)
         rvChatHistory.scrollToPosition(displayMessages.size - 1)
+        saveChatHistory()
     }
 
     private fun addAssistantMessage(content: String, products: List<com.laszlo.tienda_app.model.ProductAnalysis> = emptyList()) {
@@ -215,6 +219,7 @@ class ChatFragment : Fragment() {
         apiMessages.add(ChatMessage(role = "assistant", content = content))
         adapter.notifyItemInserted(displayMessages.size - 1)
         rvChatHistory.scrollToPosition(displayMessages.size - 1)
+        saveChatHistory()
         
         val announcement = if (products.isNotEmpty()) {
             "$content. Se muestran ${products.size} productos recomendados."
@@ -254,5 +259,40 @@ class ChatFragment : Fragment() {
         }
         override fun onPartialResults(partialResults: Bundle?) {}
         override fun onEvent(eventType: Int, params: Bundle?) {}
+    }
+    private fun saveChatHistory() {
+        try {
+            val sharedPrefs = requireContext().getSharedPreferences("chat_prefs", Context.MODE_PRIVATE)
+            val gson = com.google.gson.Gson()
+            val chatJson = gson.toJson(displayMessages)
+            sharedPrefs.edit().putString("chat_history", chatJson).apply()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun loadChatHistory() {
+        try {
+            val sharedPrefs = requireContext().getSharedPreferences("chat_prefs", Context.MODE_PRIVATE)
+            val chatJson = sharedPrefs.getString("chat_history", null)
+            val gson = com.google.gson.Gson()
+            if (chatJson != null) {
+                val type = object : com.google.gson.reflect.TypeToken<List<ChatAdapter.DisplayMessage>>() {}.type
+                val savedList: List<ChatAdapter.DisplayMessage> = gson.fromJson(chatJson, type)
+                displayMessages.clear()
+                displayMessages.addAll(savedList)
+                
+                apiMessages.clear()
+                for (msg in savedList) {
+                    apiMessages.add(ChatMessage(role = msg.role, content = msg.content))
+                }
+                adapter.notifyDataSetChanged()
+                if (displayMessages.isNotEmpty()) {
+                    rvChatHistory.scrollToPosition(displayMessages.size - 1)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

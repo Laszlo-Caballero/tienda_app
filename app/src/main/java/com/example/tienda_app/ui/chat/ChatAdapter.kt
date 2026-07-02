@@ -10,6 +10,7 @@ import com.laszlo.tienda_app.AnalysisResultAdapter
 import com.laszlo.tienda_app.R
 import com.laszlo.tienda_app.model.ChatMessage
 import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.util.MarkdownParser
 
 class ChatAdapter(
     private var messages: List<DisplayMessage>,
@@ -52,7 +53,7 @@ class ChatAdapter(
         if (holder is UserViewHolder) {
             holder.tvMessageUser.text = message.content
         } else if (holder is AssistantViewHolder) {
-            holder.tvMessageAssistant.text = message.content
+            MarkdownParser.setMarkdownText(holder.tvMessageAssistant, message.content)
             
             if (message.products.isNotEmpty()) {
                 holder.rvRecommendedProducts.visibility = View.VISIBLE
