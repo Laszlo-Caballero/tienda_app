@@ -93,34 +93,25 @@ class ScanFragment : Fragment() {
             // Fallback to text matching
         }
 
-        // Option 2: Check if it is a promo / voucher
-        val isPromo = trimmed.startsWith("promo:", ignoreCase = true) ||
-                      trimmed.startsWith("bono:", ignoreCase = true) ||
-                      (trimmed.length in 4..25 && trimmed.all { it.isLetterOrDigit() })
-
-        if (isPromo) {
-            val cleanCode = trimmed.replace("promo:", "", ignoreCase = true)
-                                   .replace("bono:", "", ignoreCase = true)
-            fetchAndShowPromo(cleanCode)
-            return
-        }
-
-        // Option 3: QR contains a Product ID or Name - Search in repository
+        // Option 2: QR contains a Product ID or Name - Search in repository
         val matchedProduct = ProductRepository.searchLocal(trimmed).firstOrNull()
         if (matchedProduct != null) {
             navigateToProductDetails(matchedProduct)
             view?.let {
                 AccessibilityHelper.announce(it, "Código QR de ${matchedProduct.nombre} identificado.")
             }
-        } else {
-            Toast.makeText(requireContext(), "Contenido QR: $trimmed (No se encontró producto correspondiente)", Toast.LENGTH_LONG).show()
-            view?.let {
-                AccessibilityHelper.announce(it, "QR escaneado: $trimmed. Producto no encontrado.")
-            }
+            return
         }
+
+        // Option 3: Check if it is a promotion/gift code (clean prefixes if present)
+        val cleanCode = trimmed.replace("promo:", "", ignoreCase = true)
+                               .replace("bono:", "", ignoreCase = true)
+                               .trim()
+
+        fetchAndShowPromoOrFallback(cleanCode, trimmed)
     }
 
-    private fun fetchAndShowPromo(code: String) {
+    private fun fetchAndShowPromoOrFallback(code: String, originalContent: String) {
         Toast.makeText(requireContext(), "Verificando bono en la nube...", Toast.LENGTH_SHORT).show()
         viewLifecycleOwner.lifecycleScope.launch {
             try {
@@ -129,12 +120,19 @@ class ScanFragment : Fragment() {
                     val dialog = PromoRevealDialog.newInstance(response.data)
                     dialog.show(parentFragmentManager, "PromoRevealDialog")
                 } else {
-                    Toast.makeText(requireContext(), "No se pudo activar el bono.", Toast.LENGTH_SHORT).show()
+                    showNotFoundError(originalContent)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(requireContext(), "Error al activar el bono: ${e.message}", Toast.LENGTH_LONG).show()
+                showNotFoundError(originalContent)
             }
+        }
+    }
+
+    private fun showNotFoundError(content: String) {
+        Toast.makeText(requireContext(), "Contenido QR: $content (No se encontró producto ni bono válido)", Toast.LENGTH_LONG).show()
+        view?.let {
+            AccessibilityHelper.announce(it, "QR escaneado: $content. Producto o bono no encontrado.")
         }
     }
 

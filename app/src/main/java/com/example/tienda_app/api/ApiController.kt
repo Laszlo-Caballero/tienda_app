@@ -14,6 +14,9 @@ object ApiController {
         if (retrofitInstance == null) {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(AuthInterceptor(context))
+                .connectTimeout(0, java.util.concurrent.TimeUnit.SECONDS)
+                .readTimeout(0, java.util.concurrent.TimeUnit.SECONDS)
+                .writeTimeout(0, java.util.concurrent.TimeUnit.SECONDS)
                 .build()
 
             retrofitInstance = Retrofit.Builder()

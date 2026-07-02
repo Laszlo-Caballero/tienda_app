@@ -2,6 +2,9 @@ package com.laszlo.tienda_app.api
 
 import com.laszlo.tienda_app.model.ProductAnalysis
 import com.laszlo.tienda_app.model.Imagen
+import com.laszlo.tienda_app.model.ChatMessage
+import com.laszlo.tienda_app.model.ChatResponse
+import com.laszlo.tienda_app.model.ChatData
 
 object ProductRepository {
 
@@ -75,6 +78,22 @@ object ProductRepository {
         } catch (e: Exception) {
             e.printStackTrace()
             searchLocal(query)
+        }
+    }
+
+    suspend fun chat(messages: List<ChatMessage>): ChatResponse {
+        return try {
+            ApiController.api.chat(com.laszlo.tienda_app.model.ChatRequest(messages))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ChatResponse(
+                status = "error",
+                message = "Error de red: ${e.message}",
+                data = ChatData(
+                    response = "Lo siento, no pude conectarme con el asistente en este momento. Por favor, verifica tu conexión.",
+                    products = emptyList()
+                )
+            )
         }
     }
 }

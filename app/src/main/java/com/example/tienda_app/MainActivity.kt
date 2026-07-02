@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.laszlo.tienda_app.api.ApiController
 import com.laszlo.tienda_app.ui.auth.AuthActivity
 import com.laszlo.tienda_app.ui.search.SearchFragment
+import com.laszlo.tienda_app.ui.chat.ChatFragment
 import com.laszlo.tienda_app.util.AuthManager
 import com.laszlo.tienda_app.util.PushNotificationManager
 
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
@@ -53,8 +54,9 @@ class MainActivity : AppCompatActivity() {
         val btnhistory = findViewById<LinearLayout>(R.id.history)
         val btnSettings = findViewById<LinearLayout>(R.id.config)
         val btnGallery = findViewById<LinearLayout>(R.id.gallery)
+        val btnChat = findViewById<LinearLayout>(R.id.chat)
 
-        val items = listOf(btnAnalyzer, btnGallery, btnhistory, btnSettings)
+        val items = listOf(btnAnalyzer, btnGallery, btnChat, btnhistory, btnSettings)
 
         btnAnalyzer.setOnClickListener {
             val analyzerFragment = ScanFragment()
@@ -66,6 +68,12 @@ class MainActivity : AppCompatActivity() {
             val searchFragment = SearchFragment()
             selectItem(btnGallery, items)
             cargarFragment(searchFragment)
+        }
+
+        btnChat.setOnClickListener {
+            val chatFragment = ChatFragment()
+            selectItem(btnChat, items)
+            cargarFragment(chatFragment)
         }
 
         btnhistory.setOnClickListener {
@@ -85,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         items.forEach {
             val density = it.resources.displayMetrics.density;
             it.isSelected = false
-            it.layoutParams.width = (81 * density).toInt()
+            it.layoutParams.width = (60 * density).toInt()
             it.setPadding(
                 0,
                 (8 * density).toInt(),
@@ -96,11 +104,11 @@ class MainActivity : AppCompatActivity() {
         }
         selected.isSelected = true
         val density = selected.resources.displayMetrics.density;
-        selected.layoutParams.width = (112 * density).toInt()
+        selected.layoutParams.width = (96 * density).toInt()
         selected.setPadding(
-            (24 * density).toInt(),
+            (12 * density).toInt(),
             (8 * density).toInt(),
-            (24 * density).toInt(),
+            (12 * density).toInt(),
             (8 * density).toInt()
         )
         selected.requestLayout()

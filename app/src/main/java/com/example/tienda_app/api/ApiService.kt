@@ -8,6 +8,8 @@ import com.laszlo.tienda_app.model.RegisterRequest
 import com.laszlo.tienda_app.model.AuthResponse
 import com.laszlo.tienda_app.model.PushTokenRequest
 import com.laszlo.tienda_app.model.PromotionResponse
+import com.laszlo.tienda_app.model.ChatRequest
+import com.laszlo.tienda_app.model.ChatResponse
 import okhttp3.MultipartBody
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -56,4 +58,9 @@ interface ApiService {
     suspend fun redeemPromotion(
         @Path("code") code: String
     ): PromotionResponse
+
+    @POST("api/products/chat")
+    suspend fun chat(
+        @Body body: ChatRequest
+    ): ChatResponse
 }
