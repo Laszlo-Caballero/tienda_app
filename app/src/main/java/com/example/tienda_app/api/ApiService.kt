@@ -7,11 +7,13 @@ import com.laszlo.tienda_app.model.LoginRequest
 import com.laszlo.tienda_app.model.RegisterRequest
 import com.laszlo.tienda_app.model.AuthResponse
 import com.laszlo.tienda_app.model.PushTokenRequest
+import com.laszlo.tienda_app.model.PromotionResponse
 import okhttp3.MultipartBody
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Body
 
@@ -49,4 +51,9 @@ interface ApiService {
     suspend fun registerPushToken(
         @Body body: PushTokenRequest
     ): Root<Unit>
+
+    @GET("api/promotions/redeem/{code}")
+    suspend fun redeemPromotion(
+        @Path("code") code: String
+    ): PromotionResponse
 }

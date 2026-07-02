@@ -10,10 +10,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.laszlo.tienda_app.api.ProductRepository
+import com.laszlo.tienda_app.api.ApiController
 import com.laszlo.tienda_app.model.ProductAnalysis
+import com.laszlo.tienda_app.components.PromoRevealDialog
 import com.laszlo.tienda_app.util.AccessibilityHelper
 import com.laszlo.tienda_app.util.QrScannerHelper
 import com.google.gson.Gson
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -89,7 +93,19 @@ class ScanFragment : Fragment() {
             // Fallback to text matching
         }
 
-        // Option 2: QR contains a Product ID or Name - Search in repository
+        // Option 2: Check if it is a promo / voucher
+        val isPromo = trimmed.startsWith("promo:", ignoreCase = true) ||
+                      trimmed.startsWith("bono:", ignoreCase = true) ||
+                      (trimmed.length in 4..25 && trimmed.all { it.isLetterOrDigit() })
+
+        if (isPromo) {
+            val cleanCode = trimmed.replace("promo:", "", ignoreCase = true)
+                                   .replace("bono:", "", ignoreCase = true)
+            fetchAndShowPromo(cleanCode)
+            return
+        }
+
+        // Option 3: QR contains a Product ID or Name - Search in repository
         val matchedProduct = ProductRepository.searchLocal(trimmed).firstOrNull()
         if (matchedProduct != null) {
             navigateToProductDetails(matchedProduct)
@@ -100,6 +116,24 @@ class ScanFragment : Fragment() {
             Toast.makeText(requireContext(), "Contenido QR: $trimmed (No se encontró producto correspondiente)", Toast.LENGTH_LONG).show()
             view?.let {
                 AccessibilityHelper.announce(it, "QR escaneado: $trimmed. Producto no encontrado.")
+            }
+        }
+    }
+
+    private fun fetchAndShowPromo(code: String) {
+        Toast.makeText(requireContext(), "Verificando bono en la nube...", Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = ApiController.api.redeemPromotion(code)
+                if (response.status == "success" && response.data != null) {
+                    val dialog = PromoRevealDialog.newInstance(response.data)
+                    dialog.show(parentFragmentManager, "PromoRevealDialog")
+                } else {
+                    Toast.makeText(requireContext(), "No se pudo activar el bono.", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(requireContext(), "Error al activar el bono: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
